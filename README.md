@@ -17,7 +17,7 @@ Also, there should be the following mutations:
 
 Please note that each of the universities has a `city` and `city` has a `state.` So there might be some complexity.
 
-
+Create a local server that will be available as a GraphQL Playground, or it will have the ability to communicate with Postman / Insomnia. No Frontend work is required during this task.
 
 ## Installation
 
@@ -51,6 +51,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## License
+## Resources
+- Nest JS Docs
 
-Nest is [MIT licensed](LICENSE).
+## Challenges
