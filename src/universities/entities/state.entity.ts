@@ -1,10 +1,10 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, InputType } from '@nestjs/graphql';
 
-@ObjectType()
-export class State {
-  @Field(() => Int, { description: 'id primary key' })
+@ObjectType("StateType")
+export class StateEntity {
+  @Field(type => Int, { description: 'id primary key' })
   id: number;
 
-  @Field()
+  @Field(type => String)
   name: string;
 }

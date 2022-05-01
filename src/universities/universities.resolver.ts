@@ -1,8 +1,7 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UniversitiesService } from './universities.service';
 import { University } from './entities/university.entity';
-import { CreateUniversityInput } from './dto/create-university.input';
-import { UpdateUniversityInput } from './dto/update-university.input';
+import { UniversityInput } from './dto/university.input';
 
 @Resolver(() => University)
 export class UniversitiesResolver {
@@ -19,12 +18,12 @@ export class UniversitiesResolver {
   }
 
   @Mutation(() => University)
-  createUniversity(@Args('createUniversityInput') createUniversityInput: CreateUniversityInput) {
+  createUniversity(@Args('createUniversityInput') createUniversityInput: UniversityInput) {
     return this.universitiesService.create(createUniversityInput);
   }
 
   @Mutation(() => University)
-  updateUniversity(@Args('updateUniversityInput') updateUniversityInput: UpdateUniversityInput) {
+  updateUniversity(@Args('updateUniversityInput') updateUniversityInput: UniversityInput) {
     return this.universitiesService.update(updateUniversityInput.id, updateUniversityInput);
   }
 }

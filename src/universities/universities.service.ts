@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUniversityInput } from './dto/create-university.input';
-import { UpdateUniversityInput } from './dto/update-university.input';
+import { UniversityInput } from './dto/university.input';
 import { University } from './entities/university.entity';
 
 @Injectable()
@@ -248,8 +247,9 @@ export class UniversitiesService {
       }
     ]
 
-  create(createUniversityInput: CreateUniversityInput) {
-    return 'This action adds a new university';
+  create(createUniversityInput: UniversityInput) {
+    this.universities.push(createUniversityInput);
+    return createUniversityInput;
   }
 
   findAll(): University[] {
@@ -260,11 +260,9 @@ export class UniversitiesService {
     return this.universities.find((university) => university.id === id);
   }
 
-  update(id: number, updateUniversityInput: UpdateUniversityInput) {
-    return `This action updates a #${id} university`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} university`;
+  update(id: number, updateUniversityInput: UniversityInput) {
+    const indexToUpdate = this.universities.findIndex((university) => university.id === id)
+    this.universities[indexToUpdate] = updateUniversityInput
+    return updateUniversityInput;
   }
 }

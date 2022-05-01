@@ -2,20 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type State {
+type StateType {
   """id primary key"""
   id: Int!
   name: String!
 }
 
-type City {
-  """id primary key"""
+type CityType {
+  """city id"""
   id: Int!
+
+  """city name"""
   name: String!
-  state: State!
+
+  """state"""
+  state: StateType!
 }
 
-type University {
+type UniversityType {
   """id"""
   id: Int!
 
@@ -23,27 +27,45 @@ type University {
   name: String!
 
   """city"""
-  city: City!
+  city: CityType!
 }
 
 type Query {
-  universities: [University!]!
-  university(id: Int!): University!
+  universities: [UniversityType!]!
+  university(id: Int!): UniversityType!
 }
 
 type Mutation {
-  createUniversity(createUniversityInput: CreateUniversityInput!): University!
-  updateUniversity(updateUniversityInput: UpdateUniversityInput!): University!
-  removeUniversity(id: Int!): University!
+  createUniversity(createUniversityInput: UniversityInput!): UniversityType!
+  updateUniversity(updateUniversityInput: UniversityInput!): UniversityType!
 }
 
-input CreateUniversityInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateUniversityInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+input UniversityInput {
+  """id"""
   id: Int!
+
+  """university name"""
+  name: String!
+
+  """city"""
+  city: CityInput!
+}
+
+input CityInput {
+  """id"""
+  id: Int!
+
+  """city name"""
+  name: String!
+
+  """state"""
+  state: StateInput!
+}
+
+input StateInput {
+  """id"""
+  id: Int!
+
+  """state name"""
+  name: String!
 }
