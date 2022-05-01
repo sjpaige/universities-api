@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UniversityInput } from './dto/university.input';
+import { CreateUniversityInput, UpdateUniversityInput } from './dto/university.input';
 import { University } from './entities/university.entity';
 
 @Injectable()
@@ -247,7 +247,7 @@ export class UniversitiesService {
       }
     ]
 
-  create(createUniversityInput: UniversityInput) {
+  create(createUniversityInput: CreateUniversityInput) {
     this.universities.push(createUniversityInput);
     return createUniversityInput;
   }
@@ -260,7 +260,7 @@ export class UniversitiesService {
     return this.universities.find((university) => university.id === id);
   }
 
-  update(id: number, updateUniversityInput: UniversityInput) {
+  update(id: number, updateUniversityInput: UpdateUniversityInput) {
     const indexToUpdate = this.universities.findIndex((university) => university.id === id)
     this.universities[indexToUpdate] = updateUniversityInput
     return updateUniversityInput;
