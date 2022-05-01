@@ -8,11 +8,6 @@ import { UpdateUniversityInput } from './dto/update-university.input';
 export class UniversitiesResolver {
   constructor(private readonly universitiesService: UniversitiesService) {}
 
-  @Mutation(() => University)
-  createUniversity(@Args('createUniversityInput') createUniversityInput: CreateUniversityInput) {
-    return this.universitiesService.create(createUniversityInput);
-  }
-
   @Query(() => [University], { name: 'universities' })
   findAll() {
     return this.universitiesService.findAll();
@@ -24,12 +19,12 @@ export class UniversitiesResolver {
   }
 
   @Mutation(() => University)
-  updateUniversity(@Args('updateUniversityInput') updateUniversityInput: UpdateUniversityInput) {
-    return this.universitiesService.update(updateUniversityInput.id, updateUniversityInput);
+  createUniversity(@Args('createUniversityInput') createUniversityInput: CreateUniversityInput) {
+    return this.universitiesService.create(createUniversityInput);
   }
 
   @Mutation(() => University)
-  removeUniversity(@Args('id', { type: () => Int }) id: number) {
-    return this.universitiesService.remove(id);
+  updateUniversity(@Args('updateUniversityInput') updateUniversityInput: UpdateUniversityInput) {
+    return this.universitiesService.update(updateUniversityInput.id, updateUniversityInput);
   }
 }

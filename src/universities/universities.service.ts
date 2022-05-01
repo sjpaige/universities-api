@@ -257,7 +257,7 @@ export class UniversitiesService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} university`;
+    return this.universities.find((university) => university.id === id);
   }
 
   update(id: number, updateUniversityInput: UpdateUniversityInput) {

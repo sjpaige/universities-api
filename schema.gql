@@ -16,9 +16,13 @@ type City {
 }
 
 type University {
-  """id primary key"""
+  """id"""
   id: Int!
+
+  """name"""
   name: String!
+
+  """city"""
   city: City!
 }
 

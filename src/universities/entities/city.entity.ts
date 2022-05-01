@@ -10,8 +10,5 @@ export class City {
   name: string;
 
   @Field(() => State)
-  state: {
-    id: number;
-    name: string;
-  }
+  state: State
 }
