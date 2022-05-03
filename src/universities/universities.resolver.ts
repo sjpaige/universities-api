@@ -2,6 +2,8 @@ import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UniversitiesService } from './universities.service';
 import { University } from './entities/university.entity';
 import { CreateUniversityInput, UpdateUniversityInput } from './dto/university.input';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Resolver(() => University)
 export class UniversitiesResolver {
@@ -17,11 +19,13 @@ export class UniversitiesResolver {
     return this.universitiesService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Mutation(() => University)
   createUniversity(@Args('createUniversityInput') createUniversityInput: CreateUniversityInput) {
     return this.universitiesService.create(createUniversityInput);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Mutation(() => University)
   updateUniversity(@Args('updateUniversityInput') updateUniversityInput: UpdateUniversityInput) {
     return this.universitiesService.update(updateUniversityInput.id, updateUniversityInput);
