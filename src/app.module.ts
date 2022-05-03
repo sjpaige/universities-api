@@ -3,7 +3,10 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UniversitiesModule } from './universities/universities.module';
 import { join } from 'path';
-import { UniversitiesResolver } from './universities/universities.resolver';
+import { UsersModule } from './users/users.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -12,9 +15,11 @@ import { UniversitiesResolver } from './universities/universities.resolver';
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
     }),
     UniversitiesModule,
+    UsersModule,
+    AuthModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 
 export class AppModule {}

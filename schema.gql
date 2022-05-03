@@ -30,17 +30,30 @@ type UniversityType {
   city: CityType!
 }
 
+type User {
+  id: Int
+  username: String
+}
+
+type LoginResponse {
+  access_token: String
+  user: User!
+}
+
 type Query {
   universities: [UniversityType!]!
   university(id: Int!): UniversityType!
+  users: [User!]!
+  user(username: String!): User!
 }
 
 type Mutation {
-  createUniversity(createUniversityInput: UniversityInput!): UniversityType!
-  updateUniversity(updateUniversityInput: UniversityInput!): UniversityType!
+  createUniversity(createUniversityInput: CreateUniversityInput!): UniversityType!
+  updateUniversity(updateUniversityInput: UpdateUniversityInput!): UniversityType!
+  login(loginUserInput: LoginUserInput!): LoginResponse
 }
 
-input UniversityInput {
+input CreateUniversityInput {
   """id"""
   id: Int!
 
@@ -68,4 +81,20 @@ input StateInput {
 
   """state name"""
   name: String!
+}
+
+input UpdateUniversityInput {
+  """id"""
+  id: Int!
+
+  """university name"""
+  name: String!
+
+  """city"""
+  city: CityInput!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
 }
