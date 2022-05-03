@@ -30,7 +30,7 @@ Create a local server that will be available as a GraphQL Playground, or it will
 
 - [Nest JS Docs](https://docs.nestjs.com/) to understand how to create apis
 - [GraphQL Docs](https://graphql.org/learn/) to understand how to query with graphql
-- [Video](https://www.youtube.com/watch?v=XPSSgAPjTb4) that goes into implementation details around how the Authenticate, Autorization, and Guard should be setup using NestJS
+- [Video](https://www.youtube.com/watch?v=XPSSgAPjTb4) that goes into implementation details around how the Authenticate, Authorization, and Guard should be setup using NestJS
 
 
 ## Installation
