@@ -29,6 +29,7 @@
     "@nestjs/passport": "^8.2.1",
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "^3.6.7",
+    "bcrypt": "^5.0.1",
     "graphql": "^16.4.0",
     "graphql-tools": "^8.2.8",
     "passport": "^0.5.2",

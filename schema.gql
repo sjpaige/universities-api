@@ -51,6 +51,7 @@ type Mutation {
   createUniversity(createUniversityInput: CreateUniversityInput!): UniversityType!
   updateUniversity(updateUniversityInput: UpdateUniversityInput!): UniversityType!
   login(loginUserInput: LoginUserInput!): LoginResponse
+  signup(loginUserInput: LoginUserInput!): User!
 }
 
 input CreateUniversityInput {
