@@ -1,27 +1,39 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { GraphQLError } from 'graphql';
 import { db } from 'src/db/database';
 import { CreateUniversityInput, UpdateUniversityInput } from './dto/university.input';
+import { City } from './entities/city.entity';
 import { University } from './entities/university.entity';
 
 @Injectable()
 export class UniversitiesService {
-    private readonly universities: Map<number, University> = db()
+    private readonly result = db()
 
   create(createUniversityInput: CreateUniversityInput) {
-    this.universities.set(createUniversityInput.id, createUniversityInput);
-    return createUniversityInput;
+    const city: City = this.result.citiesTable.get(createUniversityInput.cityId);
+    if (city) {
+      this.result.universitiesTable.set(createUniversityInput.id, {...createUniversityInput, city});
+    } else {
+      throw new HttpException('City no found by that id', HttpStatus.NOT_FOUND)
+    }
+
+    return this.findOne(createUniversityInput.id);
   }
 
   findAll(): University[] {
-    return [...this.universities.values()];
+    return [...this.result.universitiesTable.values()];
+  }
+
+  findAllCities(): City[] {
+    return [...this.result.citiesTable.values()]
   }
 
   findOne(id: number):University {
-    return this.universities.get(id);
+    return this.result.universitiesTable.get(id);
   }
 
   update(id: number, updateUniversityInput: UpdateUniversityInput) {
-    this.universities.set(id, updateUniversityInput)
+    this.result.universitiesTable.set(id, updateUniversityInput)
     return updateUniversityInput;
   }
 }

@@ -4,6 +4,7 @@ import { University } from './entities/university.entity';
 import { CreateUniversityInput, UpdateUniversityInput } from './dto/university.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { City } from './entities/city.entity';
 
 @Resolver(() => University)
 export class UniversitiesResolver {
@@ -13,7 +14,11 @@ export class UniversitiesResolver {
   findAll() {
     return this.universitiesService.findAll();
   }
-
+  
+  @Query(() => [City], { name: 'cities' })
+  findAllCities() {
+    return this.universitiesService.findAllCities();
+  }
   @Query(() => University, { name: 'university' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.universitiesService.findOne(id);

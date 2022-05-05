@@ -9,8 +9,8 @@ export class CreateUniversityInput {
   @Field(type => String, {description: 'university name'})
   name: string;
 
-  @Field(type => CityInput, {description: 'city'})
-  city: CityInput;
+  @Field(type => Int, {description: 'city id'})
+  cityId: number;
 }
 
 @InputType()

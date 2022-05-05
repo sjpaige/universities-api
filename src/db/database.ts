@@ -22,6 +22,6 @@ export function db() {
   // console.log(cities);
   // console.log(states);
 
-  return universitiesDB;
+  return {universitiesTable: universitiesDB, citiesTable: cities, statesTable: states};
 
 }
